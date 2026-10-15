@@ -18,9 +18,10 @@ Apache/PHP. Aucun cookie, aucun traceur, aucune police externe.
 
 - [ ] **Email du formulaire** : `api/contact.php` envoie à `contact@hdsb-xp.com` depuis cette même
       adresse (constantes `DESTINATAIRE` / `EXPEDITEUR`). La boîte doit exister chez l'hébergeur.
-- [ ] **Domaines** : `hdsb-xp.com` est le domaine principal. Rattacher aussi `www.hdsb-xp.com`,
-      `hdsb-xp.fr` et `www.hdsb-xp.fr` au même hébergement (multisite OVH) : le `.htaccess` les
-      redirige tous en 301 vers `https://hdsb-xp.com`.
+- [ ] **Domaines** : `hdsb-xp.com` est le domaine principal (site OVH « Website-www », dossier `www`).
+      `hdsb-xp.fr` est un site OVH séparé (dossier `aaol5xz76e`) : y déposer **uniquement**
+      `redirection-fr/.htaccess`, qui renvoie tout le .fr en 301 vers `https://hdsb-xp.com`.
+      Ajouter aussi `www.hdsb-xp.fr` à ce site .fr.
 - [ ] **SSL** : activer le certificat pour les quatre noms ci-dessus avant de déposer le `.htaccess`
       (il force https ; sans certificat, la redirection affiche une alerte de sécurité).
 - [ ] **Test réel** : envoyer un message depuis le site en ligne et vérifier sa réception (et le dossier spam).
@@ -40,7 +41,8 @@ Apache/PHP. Aucun cookie, aucun traceur, aucune police externe.
 
 ## Déploiement
 
-Copier tout le contenu du dépôt à la racine web de l'hébergement (FTP/SFTP), sauf `README.md` et `.git`.
+Copier tout le contenu du dépôt dans le dossier `www` de l'hébergement (FTP/SFTP), sauf `README.md`,
+`.git` et le dossier `redirection-fr` (réservé au dossier du .fr, voir ci-dessus).
 Le dossier `api/data/` doit être accessible en écriture par PHP ; il est protégé de l'accès public
 par son `.htaccess` et contient, si besoin, les demandes dont l'email n'a pas pu partir
 (`messages-non-envoyes.txt`) et les envois écartés comme robots (`messages-suspects.txt`).

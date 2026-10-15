@@ -1,0 +1,11 @@
+# =========================================================
+# Redirection hdsb-xp.fr (et www.hdsb-xp.fr) -> https://hdsb-xp.com
+# À déposer SEUL dans le dossier racine du site « hdsb-xp.fr » chez OVH
+# (dossier aaol5xz76e), pas dans www.
+# Redirection permanente (301) en conservant la page demandée :
+# hdsb-xp.fr/contact.html -> https://hdsb-xp.com/contact.html
+# =========================================================
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^ https://hdsb-xp.com%{REQUEST_URI} [R=301,L,NE]
+</IfModule>
