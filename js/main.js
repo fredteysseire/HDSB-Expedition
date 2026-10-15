@@ -26,6 +26,18 @@
     }
   });
 
+  // Agenda des salons (actualites.html) : un salon dont la date de fin (data-end) est passée
+  // rejoint « Salons passés » (le plus récent en premier) ; message d'attente si plus rien à venir.
+  const upcoming = document.getElementById('agenda-avenir');
+  if (upcoming) {
+    const pastList = document.getElementById('agenda-passe');
+    const endOf = (el) => new Date(el.getAttribute('data-end') + 'T23:59:59');
+    const past = [...upcoming.querySelectorAll('.event[data-end]')].filter((el) => endOf(el) < today);
+    past.sort((a, b) => endOf(b) - endOf(a)).forEach((el) => pastList.appendChild(el));
+    document.getElementById('agenda-passe-bloc').hidden = past.length === 0;
+    document.getElementById('agenda-vide').hidden = upcoming.children.length > 0;
+  }
+
   document.querySelectorAll('[data-year]').forEach((el) => {
     el.textContent = today.getFullYear();
   });

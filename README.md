@@ -27,11 +27,16 @@ Apache/PHP. Aucun cookie, aucun traceur, aucune police externe.
 - [ ] **Photos réelles** (atelier, camions en cours, détails) : à ajouter dès que disponibles.
 - [ ] Après la mise en ligne : déclarer le site dans Google Search Console et créer la fiche Google Business Profile.
 
-## Encart « Salon »
+## Mettre à jour les actualités (`actualites.html`)
 
-L'encart Vanlife Expo Bordeaux de l'accueil (`<aside class="news-strip" data-until="2026-11-15">`)
-s'affiche jusqu'au 15 novembre 2026 inclus puis se masque automatiquement. Pour un prochain salon,
-modifier le texte et la date `data-until`.
+- **Ajouter un salon** : copier un bloc `<li class="event" data-end="AAAA-MM-JJ">` dans
+  `<ul id="agenda-avenir">` et adapter dates, nom, lieu. `data-end` = dernier jour du salon :
+  le lendemain, le salon passe tout seul dans « Salons passés ».
+- **Ajouter une information** : copier un bloc `<article class="news-item">` en haut de
+  `<div class="news-list">` (la plus récente en premier).
+- **Encart de l'accueil** : le bandeau du salon (`<aside class="news-strip" data-until="2026-11-15">`)
+  s'affiche jusqu'au 15 novembre 2026 inclus puis se masque. Pour le salon suivant, changer le
+  texte et la date `data-until`.
 
 ## Déploiement
 

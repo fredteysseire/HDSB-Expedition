@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salons et actualités, HDSB Expédition</title>
+<meta name="description" content="Agenda des salons où exposera HDSB Expédition et informations importantes : rencontrez José et Fred et découvrez nos véhicules d'expédition.">
+<link rel="canonical" href="https://hdsb-xp.com/actualites.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HDSB Expédition">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Salons et actualités, HDSB Expédition">
+<meta property="og:description" content="Agenda des salons et informations importantes de HDSB Expédition.">
+<meta property="og:url" content="https://hdsb-xp.com/actualites.html">
+<meta property="og:image" content="https://hdsb-xp.com/assets/img/partage-hdsb.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="./" class="logo"><img src="assets/img/logo.webp" alt="HDSB Expédition" width="603" height="230"></a>
+    <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
+      <a href="./#savoir-faire">Savoir-faire</a>
+      <a href="./#realisations">Réalisations</a>
+      <a href="./#fondateurs">Qui sommes-nous</a>
+      <a href="actualites.html" aria-current="page">Actualités</a>
+      <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Actualités</span>
+      <h1>Salons et actualités</h1>
+      <p class="lede">Retrouvez les salons où nous exposons et les informations importantes sur HDSB Expédition.</p>
+    </div>
+  </section>
+
+  <!-- Agenda : chaque salon porte sa date de fin (data-end). Une fois passée, js/main.js le déplace
+       automatiquement dans « Salons passés ». Pour ajouter un salon : copier un <li class="event">. -->
+  <section id="agenda">
+    <div class="wrap">
+      <h2>Agenda des salons</h2>
+      <ul class="events" id="agenda-avenir">
+        <li class="event" data-end="2026-11-15">
+          <div class="event-date"><span class="event-days">14-15</span><span class="event-month">nov. 2026</span></div>
+          <div class="event-body">
+            <h3>Vanlife Expo Bordeaux</h3>
+            <p class="event-place">Parc des Expositions de Bordeaux</p>
+            <p>Venez découvrir nos savoir-faire et parler de votre projet de véhicule d'expédition avec José et Fred.</p>
+            <a href="contact.html" class="event-link">Prendre rendez-vous sur le salon →</a>
+          </div>
+        </li>
+      </ul>
+      <p class="events-empty" id="agenda-vide" hidden>Nos prochains salons seront annoncés ici très bientôt. Une question en attendant ? <a href="contact.html">Contactez-nous</a>.</p>
+
+      <div id="agenda-passe-bloc" hidden>
+        <h3 class="events-past-title">Salons passés</h3>
+        <ul class="events events-past" id="agenda-passe"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Informations : la plus récente en premier -->
+  <section id="informations" class="bg-sand">
+    <div class="wrap">
+      <h2>Informations</h2>
+      <div class="news-list">
+        <article class="news-item">
+          <time datetime="2026-10-15">15 octobre 2026</time>
+          <h3>Bienvenue sur le site d'HDSB Expédition</h3>
+          <p>HDSB Expédition lance son site internet. Vous y trouverez nos savoir-faire, nos réalisations en atelier et l'agenda des salons où nous rencontrer. Pour toute demande, notre formulaire de contact vous met directement en relation avec José et Fred.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/img/logo-blanc.webp" alt="HDSB Expédition" width="603" height="230" loading="lazy">
+        <p>Préparation et aménagement de véhicules d'expédition sur base poids lourd.<br>305 chemin de la Gravière, 30210 Sernhac (Gard).</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+33769816997">07 69 81 69 97</a></li>
+          <li><a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a></li>
+          <li><a href="contact.html">Formulaire de contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Le site</h3>
+        <ul>
+          <li><a href="./">Accueil</a></li>
+          <li><a href="./#savoir-faire">Savoir-faire</a></li>
+          <li><a href="actualites.html">Actualités et salons</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> HDSB Expédition</span>
+      <span>Concevoir. Construire. Aller plus loin.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
