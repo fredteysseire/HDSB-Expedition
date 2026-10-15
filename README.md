@@ -16,12 +16,13 @@ Apache/PHP. Aucun cookie, aucun traceur, aucune police externe.
 
 ## Avant la mise en ligne (à faire)
 
-- [ ] **Hébergeur** : compléter le champ surligné `[...]` dans `mentions-legales.html`
-      (nom, adresse et téléphone de l'hébergeur, mention obligatoire).
 - [ ] **Email du formulaire** : `api/contact.php` envoie à `contact@hdsb-xp.com` depuis cette même
       adresse (constantes `DESTINATAIRE` / `EXPEDITEUR`). La boîte doit exister chez l'hébergeur.
-- [ ] **SSL** : activer le certificat pour `hdsb-xp.com` et `www.hdsb-xp.com` avant de déposer
-      le `.htaccess` (il force https et la version sans www).
+- [ ] **Domaines** : `hdsb-xp.com` est le domaine principal. Rattacher aussi `www.hdsb-xp.com`,
+      `hdsb-xp.fr` et `www.hdsb-xp.fr` au même hébergement (multisite OVH) : le `.htaccess` les
+      redirige tous en 301 vers `https://hdsb-xp.com`.
+- [ ] **SSL** : activer le certificat pour les quatre noms ci-dessus avant de déposer le `.htaccess`
+      (il force https ; sans certificat, la redirection affiche une alerte de sécurité).
 - [ ] **Test réel** : envoyer un message depuis le site en ligne et vérifier sa réception (et le dossier spam).
 - [ ] **Photos réelles** (atelier, camions en cours, détails) : à ajouter dès que disponibles.
 - [ ] Après la mise en ligne : déclarer le site dans Google Search Console et créer la fiche Google Business Profile.
