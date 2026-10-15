@@ -6,9 +6,9 @@
 // (dossier protégé par data/.htaccess) pour ne jamais perdre un contact.
 
 const SITE = 'https://hdsb-xp.com/';
-const DESTINATAIRE = 'j.modesto@hdsb-xp.com';
+const DESTINATAIRE = 'contact@hdsb-xp.com';
 // Doit être une adresse du domaine hdsb-xp.com, sinon le mail risque de finir en spam.
-const EXPEDITEUR = 'j.modesto@hdsb-xp.com';
+const EXPEDITEUR = 'contact@hdsb-xp.com';
 const MAX_ENVOIS_PAR_HEURE = 10;
 // Délai minimal (ms) entre l'affichage de la page et l'envoi, mesuré par js/main.js (champ « verif »).
 const DELAI_MIN_MS = 3000;
