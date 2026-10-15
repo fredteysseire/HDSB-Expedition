@@ -5,7 +5,6 @@
 // Si l'envoi du mail échoue, la demande est conservée dans data/messages-non-envoyes.txt
 // (dossier protégé par data/.htaccess) pour ne jamais perdre un contact.
 
-const SITE = 'https://hdsb-xp.com/';
 const DESTINATAIRE = 'contact@hdsb-xp.com';
 // Doit être une adresse du domaine hdsb-xp.com, sinon le mail risque de finir en spam.
 const EXPEDITEUR = 'contact@hdsb-xp.com';
@@ -17,8 +16,10 @@ const MAX_JOURNAL_SUSPECTS = 2000000;
 
 $dataDir = __DIR__ . '/data';
 
+// Redirection relative à la racine : le navigateur garde le domaine et le protocole de la page
+// (http ou https), ce qui évite toute erreur tant que le certificat SSL n'est pas actif.
 function retour($page) {
-    header('Location: ' . SITE . $page, true, 303);
+    header('Location: /' . $page, true, 303);
     exit;
 }
 
