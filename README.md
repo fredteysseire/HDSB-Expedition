@@ -41,8 +41,10 @@ Apache/PHP. Aucun cookie, aucun traceur, aucune police externe.
 
 ## Déploiement
 
-Copier tout le contenu du dépôt dans le dossier `www` de l'hébergement (FTP/SFTP), sauf `README.md`,
-`.git` et le dossier `redirection-fr` (réservé au dossier du .fr, voir ci-dessus).
+Mise en ligne automatique par l'intégration Git d'OVH : la branche `main` de ce dépôt est publiée
+dans le dossier `www` de l'hébergement (site OVH « Website-www »). Toute modification fusionnée dans
+`main` part en ligne. `README.md`, `.git*` et `redirection-fr/` sont publiés avec le dépôt mais
+renvoient une 404 (règle du `.htaccess`). Le `.htaccess` du dossier du .fr se dépose à part, par FTP.
 Le dossier `api/data/` doit être accessible en écriture par PHP ; il est protégé de l'accès public
 par son `.htaccess` et contient, si besoin, les demandes dont l'email n'a pas pu partir
 (`messages-non-envoyes.txt`) et les envois écartés comme robots (`messages-suspects.txt`).
