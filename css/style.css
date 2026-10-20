@@ -154,10 +154,15 @@ section[id] { scroll-margin-top: 72px; }
 .site-header .wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   min-height: 72px;
   gap: 24px;
 }
+.site-header .logo { margin-right: auto; }
+/* Logo Instagram en couleur, à côté de « Nous contacter » (visible aussi sur mobile) */
+.header-ig { display: flex; flex: none; border-radius: 7px; transition: transform 0.2s; }
+.header-ig:hover { transform: scale(1.08); }
+.header-ig svg { display: block; }
 .logo img { height: 42px; width: auto; }
 
 .nav-links { display: flex; align-items: center; gap: 32px; }
@@ -184,7 +189,8 @@ section[id] { scroll-margin-top: 72px; }
   padding: 8px;
 }
 
-@media (max-width: 760px) {
+/* Menu replié (hamburger) sous 1000 px : au-delà, les libellés tiennent sur une ligne */
+@media (max-width: 1000px) {
   .nav-toggle { display: block; }
   .nav-links {
     display: none;
@@ -203,6 +209,7 @@ section[id] { scroll-margin-top: 72px; }
   .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line); }
   .nav-links .btn { margin-top: 16px; text-align: center; border-bottom: 0; }
   .logo img { height: 34px; }
+  .site-header .wrap { gap: 14px; }
 }
 
 /* ---------- Bandeau d'accueil ---------- */
