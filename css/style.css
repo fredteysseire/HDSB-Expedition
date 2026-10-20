@@ -1,6 +1,8 @@
 /* =========================================================
    HDSB Expédition, feuille de style unique
-   Charte : graphite du logo, cuivre du trait, sable clair.
+   Charte : fonds nuit (noir bleuté, RAL 9005), textes gris clairs,
+   accent cuivre ; boutons d'action en bleu Nogaro.
+   Le bandeau d'accueil (.hero) garde ses couleurs claires d'origine.
    Police Montserrat hébergée sur le site (aucun appel externe).
    ========================================================= */
 
@@ -13,17 +15,32 @@
 }
 
 :root {
-  --graphite: #5e5e66;
-  --ink: #1f2125;
-  --ink-soft: #3a3c42;
-  --copper: #b56d47;
-  --copper-dark: #94532f;
-  --sand: #f6f3ee;
-  --paper: #fcfbf9;
-  --mist: #dfe4e7;
-  --line: #e2ddd5;
-  --text: #2b2d31;
-  --muted: #6c6e74;
+  /* Fonds (visuel de charte « Strata Flow ») */
+  --night: #050b10;        /* fond principal */
+  --sand: #0a1218;         /* sections alternées */
+  --paper: #0f1920;        /* cartes et encarts */
+  --mist: #142029;         /* fond d'attente des images */
+  --black: #010609;        /* RAL 9005 : sections sombres, pied de page */
+  --nogaro: #0057d1;       /* bleu Nogaro : fond des boutons d'action */
+  --nogaro-hover: #1a6af0;
+
+  /* Textes, adaptés aux fonds sombres */
+  --graphite: #9da3a6;     /* RAL 7040 */
+  --ink: #f3f5f6;
+  --ink-soft: #cbd0cc;     /* RAL 7035 */
+  --text: #c3c8cb;
+  --muted: #8d959a;
+  --line: rgba(203, 208, 204, 0.14);
+  --line-strong: rgba(203, 208, 204, 0.28);
+
+  /* Accent cuivre de la charte, éclairci pour rester lisible sur fond sombre */
+  --copper: #c47a52;
+  --copper-dark: #dc9a74;
+
+  /* Couleurs d'origine, conservées pour le bandeau d'accueil (fond clair) */
+  --hero-ink: #1f2125;
+  --hero-copper: #b56d47;
+  --hero-copper-dark: #94532f;
 
   --font: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --wrap: 1160px;
@@ -32,7 +49,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--night); }
 
 body {
   margin: 0;
@@ -40,14 +57,14 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: var(--text);
-  background: var(--paper);
+  background: var(--night);
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; height: auto; display: block; }
 
 a { color: var(--copper-dark); }
-a:hover { color: var(--copper); }
+a:hover { color: var(--ink); }
 
 h1, h2, h3 {
   font-weight: 600;
@@ -121,19 +138,19 @@ section[id] { scroll-margin-top: 72px; }
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
-.btn-primary { background: var(--copper); color: #fff; }
-.btn-primary:hover { background: var(--copper-dark); color: #fff; }
-.btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
-.btn-ghost:hover { background: var(--ink); color: #fff; }
+.btn-primary { background: var(--nogaro); color: #fff; }
+.btn-primary:hover { background: var(--nogaro-hover); color: #fff; }
+.btn-ghost { border-color: var(--line-strong); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--ink); background: rgba(255,255,255,0.06); color: #fff; }
 .btn-light { border-color: rgba(255,255,255,0.7); color: #fff; }
-.btn-light:hover { background: #fff; color: var(--ink); }
+.btn-light:hover { background: #fff; color: var(--hero-ink); }
 
 /* ---------- En-tête ---------- */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(252, 251, 249, 0.94);
+  background: rgba(5, 11, 16, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
@@ -158,6 +175,7 @@ section[id] { scroll-margin-top: 72px; }
 }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--copper-dark); }
 .nav-links .btn { color: #fff; padding: 11px 20px; }
+.nav-links .btn:hover, .nav-links .btn[aria-current="page"] { color: #fff; }
 
 .nav-toggle {
   display: none;
@@ -181,7 +199,7 @@ section[id] { scroll-margin-top: 72px; }
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: var(--paper);
+    background: var(--night);
     border-bottom: 1px solid var(--line);
     padding: 8px 24px 20px;
   }
@@ -199,7 +217,7 @@ section[id] { scroll-margin-top: 72px; }
   align-items: center;
   padding: 0;
   overflow: hidden;
-  background: var(--mist);
+  background: #dfe4e7;
 }
 .hero-bg {
   position: absolute;
@@ -230,7 +248,7 @@ section[id] { scroll-margin-top: 72px; }
   font-weight: 500;
   letter-spacing: 0.36em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--hero-ink);
   margin-bottom: 2rem;
 }
 .hero-logo {
@@ -242,10 +260,14 @@ section[id] { scroll-margin-top: 72px; }
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--hero-ink);
   margin-bottom: 3.5rem;
 }
 .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hero .btn-primary { background: var(--hero-copper); }
+.hero .btn-primary:hover { background: var(--hero-copper-dark); }
+.hero .btn-ghost { border-color: var(--hero-ink); color: var(--hero-ink); background: transparent; }
+.hero .btn-ghost:hover { background: var(--hero-ink); color: #fff; }
 
 @media (max-width: 760px) {
   .hero { min-height: 92vh; }
@@ -255,7 +277,8 @@ section[id] { scroll-margin-top: 72px; }
 
 /* Encart actualité (salon) : affiché par js/main.js jusqu'à sa date de fin */
 .news-strip {
-  background: var(--ink);
+  background: var(--black);
+  border-bottom: 1px solid var(--line);
   color: #fff;
   padding: 18px 0;
   font-size: 0.95rem;
@@ -331,7 +354,7 @@ section[id] { scroll-margin-top: 72px; }
 @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
 
 /* ---------- Plateformes ---------- */
-.bg-ink { background: var(--ink); color: #d9dadd; }
+.bg-ink { background: var(--black); color: #d9dadd; }
 .bg-ink h2, .bg-ink h3 { color: #fff; }
 .bg-ink .eyebrow { color: #a9abb1; }
 .bg-ink .lede { color: #c4c6ca; }
@@ -342,6 +365,7 @@ section[id] { scroll-margin-top: 72px; }
   gap: 24px;
 }
 .platform {
+  background: var(--paper);
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: var(--radius);
   padding: 36px 30px 32px;
@@ -505,7 +529,8 @@ section[id] { scroll-margin-top: 72px; }
 @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
 
 .contact-aside {
-  background: var(--sand);
+  background: var(--paper);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 32px 28px;
 }
@@ -539,12 +564,14 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
   width: 100%;
   font-family: var(--font);
   font-size: 1rem;
-  color: var(--text);
-  background: #fff;
-  border: 1px solid #cfc9bf;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   padding: 13px 14px;
+  color-scheme: dark;
 }
+.field input::placeholder, .field textarea::placeholder { color: #6b7378; }
 .field textarea { min-height: 170px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: 2px solid var(--copper);
@@ -552,23 +579,25 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
   border-color: var(--copper);
 }
 .form-error {
-  background: #fbeae4;
-  border-left: 3px solid #b3402a;
+  background: rgba(214, 64, 52, 0.14);
+  border-left: 3px solid #e0574a;
   padding: 14px 16px;
   margin-bottom: 24px;
-  color: #6e2a1c;
+  color: #f2c6c1;
 }
+.form-error a { color: #fff; }
 .form-note { font-size: 0.82rem; color: var(--muted); margin-top: 18px; }
 
 /* ---------- Pages texte (mentions légales) ---------- */
 .legal-content { max-width: 780px; }
 .legal-content h2 { font-size: 1.3rem; margin-top: 2.4rem; }
 .legal-content ul { padding-left: 1.2rem; }
-.legal-todo { background: #fff4d6; padding: 0 4px; }
+.legal-todo { background: rgba(255, 196, 0, 0.2); padding: 0 4px; }
 
 /* ---------- Pied de page ---------- */
 .site-footer {
-  background: var(--ink);
+  background: var(--black);
+  border-top: 1px solid var(--line);
   color: #a9abb1;
   padding: 56px 0 32px;
   font-size: 0.9rem;
@@ -608,7 +637,7 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
   position: absolute;
   left: -9999px;
   top: 8px;
-  background: var(--ink);
+  background: var(--nogaro);
   color: #fff;
   padding: 10px 16px;
   z-index: 100;
@@ -653,7 +682,7 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
   display: grid;
   grid-template-columns: 140px 1fr;
   gap: 28px;
-  background: #fff;
+  background: var(--paper);
   border: 1px solid var(--line);
   border-left: 3px solid var(--copper);
   border-radius: var(--radius);
