@@ -380,19 +380,27 @@ section[id] { scroll-margin-top: 72px; }
   gap: 24px;
 }
 .founder {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 28px;
+  align-items: start;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  overflow: hidden;
+  padding: 28px;
 }
+/* Photo d'origine affichée en petit, sans recadrage du fichier */
 .founder-photo img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: 50% 25%;
+  height: auto;
+  border-radius: var(--radius);
   background: var(--mist);
 }
-.founder-body { padding: 28px 32px 32px; }
+.founder-body { padding: 0; }
+@media (max-width: 560px) {
+  .founder { grid-template-columns: 1fr; gap: 20px; }
+  .founder-photo img { width: 150px; }
+}
 .founder-head { margin-bottom: 1.2rem; }
 .founder h3 { margin: 0; }
 .founder-role {
