@@ -290,6 +290,8 @@ section[id] { scroll-margin-top: 72px; }
 }
 .news-strip strong { color: var(--nogaro-light); font-weight: 600; }
 .news-strip a { color: #fff; }
+/* Logo du salon à la place de l'étiquette « Salon » */
+.news-logo img { width: 56px; height: 56px; }
 .news-tag {
   font-size: 0.7rem;
   font-weight: 600;
@@ -685,6 +687,8 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
   border-radius: var(--radius);
   padding: 28px;
 }
+.event:has(.event-logo) { grid-template-columns: 140px 1fr 120px; align-items: center; }
+.event-logo img { width: 120px; height: 120px; }
 .event-date { display: flex; flex-direction: column; }
 .event-days { font-size: 2rem; font-weight: 600; line-height: 1.1; color: var(--ink); }
 .event-month {
@@ -702,7 +706,11 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .events-past-title { margin-top: 48px; color: var(--graphite); }
 .events-past .event { border-left-color: var(--line); opacity: 0.75; }
 .events-past .event-link { display: none; }
-@media (max-width: 600px) { .event { grid-template-columns: 1fr; gap: 12px; padding: 22px; } }
+@media (max-width: 600px) {
+  .event, .event:has(.event-logo) { grid-template-columns: 1fr; gap: 12px; padding: 22px; }
+  .event-logo { order: -1; }
+  .event-logo img { width: 88px; height: 88px; }
+}
 
 .news-list { display: grid; gap: 20px; max-width: 820px; }
 .news-item {
