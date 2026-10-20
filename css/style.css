@@ -375,6 +375,35 @@ section[id] { scroll-margin-top: 72px; }
 .platform-note strong { color: #fff; font-weight: 600; }
 @media (max-width: 900px) { .platforms { grid-template-columns: 1fr; } }
 
+/* Marques : noms en capitales espacées, sans logos (pas d'usage des marques déposées) */
+.brands {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.brands li {
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 2px;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.brands .brands-more {
+  border: 0;
+  padding-left: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #a9abb1;
+}
+
 /* ---------- Fondateurs ---------- */
 .founders {
   display: grid;
