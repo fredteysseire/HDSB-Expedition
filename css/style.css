@@ -753,3 +753,21 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-item summary:hover h3 { color: var(--nogaro-light); }
 .faq-item p { margin: 0 0 22px; color: var(--muted); max-width: 72ch; }
+
+/* ---------- Réseaux sociaux ---------- */
+.footer-follow {
+  margin: 1.4rem 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.social-link .ig-icon { flex: none; color: var(--nogaro-light); }
+.social-link:hover .ig-icon { color: var(--ink); }
