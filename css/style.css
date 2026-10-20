@@ -287,17 +287,19 @@ section[id] { scroll-margin-top: 72px; }
   gap: clamp(32px, 6vw, 96px);
   align-items: start;
 }
-.intro-grid .quote {
-  font-size: clamp(1.15rem, 2vw, 1.4rem);
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--ink);
-  border-left: 2px solid var(--copper);
-  padding-left: 24px;
-  margin: 0 0 1.6rem;
+.intro-grid { align-items: center; }
+.intro-photo { margin: 0; justify-self: end; width: 100%; max-width: 440px; }
+.intro-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--mist);
 }
+.intro-photo figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--muted); }
 @media (max-width: 860px) {
   .intro-grid { grid-template-columns: 1fr; }
+  .intro-photo { justify-self: start; }
 }
 
 /* ---------- Savoir-faire ---------- */
@@ -607,7 +609,7 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .feature img { aspect-ratio: 3 / 2; object-fit: cover; }
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 .gallery figure { margin: 0; }
@@ -618,7 +620,10 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
   font-size: 0.85rem;
   color: var(--muted);
 }
-@media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+@media (max-width: 600px) {
+  .gallery { gap: 10px; }
+  .gallery figcaption { font-size: 0.75rem; }
+}
 
 /* ---------- Actualités : agenda et informations ---------- */
 .events { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
