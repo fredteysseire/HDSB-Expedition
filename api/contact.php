@@ -1,0 +1,145 @@
+<?php
+// Réception du formulaire de contact (contact.html) et envoi par email via la fonction mail()
+// de l'hébergement, sans service tiers : la requête reste sur hdsb-xp.com.
+// Succès -> redirection vers merci.html ; échec -> retour sur contact.html?envoi=erreur.
+// Si l'envoi du mail échoue, la demande est conservée dans data/messages-non-envoyes.txt
+// (dossier protégé par data/.htaccess) pour ne jamais perdre un contact.
+
+const DESTINATAIRE = 'contact@hdsb-xp.com';
+// Doit être une adresse du domaine hdsb-xp.com, sinon le mail risque de finir en spam.
+const EXPEDITEUR = 'contact@hdsb-xp.com';
+const MAX_ENVOIS_PAR_HEURE = 10;
+// Délai minimal (ms) entre l'affichage de la page et l'envoi, mesuré par js/main.js (champ « verif »).
+const DELAI_MIN_MS = 3000;
+// Taille max du journal des envois écartés, pour ne jamais remplir l'hébergement.
+const MAX_JOURNAL_SUSPECTS = 2000000;
+
+$dataDir = __DIR__ . '/data';
+
+// Redirection relative à la racine : le navigateur garde le domaine et le protocole de la page
+// (http ou https), ce qui évite toute erreur tant que le certificat SSL n'est pas actif.
+function retour($page) {
+    header('Location: /' . $page, true, 303);
+    exit;
+}
+
+// Supprime les retours à la ligne (empêche l'injection d'en-têtes email) et les espaces superflus.
+function ligne($value, $max) {
+    $value = trim(preg_replace('/[\r\n\t]+/', ' ', (string) $value));
+    return mb_substr($value, 0, $max, 'UTF-8');
+}
+
+function ouNon($value) {
+    return $value !== '' ? $value : 'non renseigné';
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    retour('contact.html');
+}
+
+// Piège à robots : champ invisible pour un humain. Rempli -> on fait comme si tout allait bien.
+if (!empty($_POST['site_web'])) {
+    retour('merci.html');
+}
+
+$nom = ligne($_POST['nom'] ?? '', 120);
+$email = ligne($_POST['email'] ?? '', 160);
+$telephone = ligne($_POST['telephone'] ?? '', 40);
+$projet = ligne($_POST['projet'] ?? '', 120);
+$vehicule = ligne($_POST['vehicule'] ?? '', 160);
+$echeance = ligne($_POST['echeance'] ?? '', 60);
+$origine = ligne($_POST['origine'] ?? '', 80);
+$message = trim(mb_substr((string) ($_POST['message'] ?? ''), 0, 5000, 'UTF-8'));
+
+if ($nom === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    retour('contact.html?envoi=erreur#contact-form');
+}
+
+$corps = "Nouvelle demande depuis le site hdsb-xp.com\n\n"
+    . "Nom : $nom\n"
+    . "Email : $email\n"
+    . "Téléphone : " . ouNon($telephone) . "\n"
+    . "Projet : " . ouNon($projet) . "\n"
+    . "Base du véhicule : " . ouNon($vehicule) . "\n"
+    . "Échéance : " . ouNon($echeance) . "\n"
+    . "Nous a connus par : " . ouNon($origine) . "\n\n"
+    . "Message :\n$message\n";
+
+// Robots : le champ « verif » n'est rempli que par le JavaScript de la page, après un délai
+// humainement plausible. Ces envois ne sont pas transmis par email mais conservés dans
+// data/messages-suspects.txt (une vraie demande écartée par erreur reste récupérable).
+$verif = $_POST['verif'] ?? '';
+if (!ctype_digit((string) $verif) || (int) $verif < DELAI_MIN_MS) {
+    $journal = $dataDir . '/messages-suspects.txt';
+    if (@filesize($journal) < MAX_JOURNAL_SUSPECTS) {
+        @file_put_contents(
+            $journal,
+            '=== ' . date('Y-m-d H:i:s') . ' (verif=' . ligne($verif, 20) . ")\n" . $corps . "\n",
+            FILE_APPEND | LOCK_EX
+        );
+    }
+    retour('merci.html');
+}
+
+// Contenu typique du spam (lien dans le message, téléphone impossible, alphabet cyrillique ou
+// asiatique) : la demande est quand même envoyée, mais l'objet est préfixé « [SPAM ?] ».
+$chiffres = preg_replace('/\D+/', '', $telephone);
+$telephoneValide = preg_match('/^0\d{9}$/', $chiffres) || (preg_match('/^\s*(\+|00)/', $telephone) && strlen($chiffres) >= 8 && strlen($chiffres) <= 15);
+$suspect = preg_match('~https?://|www\.~i', $message . ' ' . $nom . ' ' . $vehicule)
+    || preg_match('/[\p{Cyrillic}\p{Han}\p{Hangul}]/u', $nom . ' ' . $message)
+    || !$telephoneValide;
+
+// Limite le nombre d'envois par adresse IP (anti-spam), stocké hors base de données.
+$limiteFile = $dataDir . '/limite-contact.json';
+$ipKey = hash('sha256', $_SERVER['REMOTE_ADDR'] ?? '');
+$now = time();
+$fp = @fopen($limiteFile, 'c+');
+if ($fp) {
+    flock($fp, LOCK_EX);
+    $size = filesize($limiteFile) ?: 0;
+    $limites = json_decode($size > 0 ? fread($fp, $size) : '', true);
+    if (!is_array($limites)) {
+        $limites = [];
+    }
+    foreach ($limites as $key => $times) {
+        $limites[$key] = array_values(array_filter($times, fn($t) => $t > $now - 3600));
+        if (!$limites[$key]) {
+            unset($limites[$key]);
+        }
+    }
+    $trop = count($limites[$ipKey] ?? []) >= MAX_ENVOIS_PAR_HEURE;
+    if (!$trop) {
+        $limites[$ipKey][] = $now;
+    }
+    ftruncate($fp, 0);
+    rewind($fp);
+    fwrite($fp, json_encode($limites));
+    fflush($fp);
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    if ($trop) {
+        retour('contact.html?envoi=erreur#contact-form');
+    }
+}
+
+$sujet = mb_encode_mimeheader(($suspect ? '[SPAM ?] ' : '') . "Nouvelle demande, site HDSB Expédition : $nom", 'UTF-8');
+$entetes = implode("\r\n", [
+    'From: ' . mb_encode_mimeheader('Site HDSB Expédition', 'UTF-8') . ' <' . EXPEDITEUR . '>',
+    'Reply-To: ' . $email,
+    'MIME-Version: 1.0',
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: 8bit',
+]);
+
+$envoye = mail(DESTINATAIRE, $sujet, $corps, $entetes, '-f' . EXPEDITEUR);
+
+if (!$envoye) {
+    @file_put_contents(
+        $dataDir . '/messages-non-envoyes.txt',
+        '=== ' . date('Y-m-d H:i:s') . "\n" . $corps . "\n",
+        FILE_APPEND | LOCK_EX
+    );
+    retour('contact.html?envoi=erreur#contact-form');
+}
+
+retour('merci.html');

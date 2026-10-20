@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact, HDSB Expédition</title>
+<meta name="description" content="Parlez-nous de votre projet de véhicule d'expédition : cellule sur mesure, carrossage, aménagement ou véhicule clés en main. José et Fred vous répondent.">
+<link rel="canonical" href="https://hdsb-xp.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HDSB Expédition">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Contact, HDSB Expédition">
+<meta property="og:description" content="Parlez-nous de votre projet de véhicule d'expédition. José et Fred vous répondent.">
+<meta property="og:url" content="https://hdsb-xp.com/contact.html">
+<meta property="og:image" content="https://hdsb-xp.com/assets/img/partage-hdsb.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="./" class="logo"><img src="assets/img/logo.webp" alt="HDSB Expédition" width="603" height="230"></a>
+    <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
+      <a href="./#savoir-faire">Savoir-faire</a>
+      <a href="./#realisations">Réalisations</a>
+      <a href="./#fondateurs">Qui sommes-nous</a>
+      <a href="actualites.html">Actualités</a>
+      <a href="contact.html" class="btn btn-primary" aria-current="page">Nous contacter</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h1>Parlons de votre projet</h1>
+      <p class="lede">Décrivez-nous votre projet en quelques lignes, même s'il n'en est qu'au stade de l'idée. José ou Fred vous recontacte pour en discuter.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap contact-grid">
+
+      <form id="contact-form" action="api/contact.php" method="POST">
+        <p class="form-error" id="form-error" role="alert" hidden>Votre message n'a pas pu être envoyé. Vérifiez votre email puis réessayez, ou contactez-nous directement au <a href="tel:+33769816997">07 69 81 69 97</a> ou à <a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a>.</p>
+        <!-- Piège à robots : champ invisible pour un humain -->
+        <input type="text" name="site_web" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="field">
+          <label for="nom">Nom et prénom</label>
+          <input type="text" id="nom" name="nom" required autocomplete="name">
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="projet">Votre projet</label>
+            <select id="projet" name="projet" required>
+              <option value="">Choisir…</option>
+              <option>Véhicule d'expédition clés en main</option>
+              <option>Aménagement ou cellule sur mon propre porteur</option>
+              <option>Carrossage technique (structure, coffres, protections…)</option>
+              <option>Énergie et autonomie</option>
+              <option>Autre demande</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="vehicule">Base du véhicule <span class="optional">(facultatif)</span></label>
+            <input type="text" id="vehicule" name="vehicule" placeholder="Ex. MAN TGM 4x4, pas encore de porteur…">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="echeance">Échéance souhaitée <span class="optional">(facultatif)</span></label>
+            <select id="echeance" name="echeance">
+              <option value="">Non précisée</option>
+              <option>Moins de 6 mois</option>
+              <option>6 à 12 mois</option>
+              <option>Plus d'un an</option>
+              <option>Je me renseigne</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="origine">Comment nous avez-vous connus ? <span class="optional">(facultatif)</span></label>
+            <select id="origine" name="origine">
+              <option value="">Non précisé</option>
+              <option>Salon Vanlife Expo Bordeaux</option>
+              <option>Autre salon ou événement</option>
+              <option>Recherche internet</option>
+              <option>Réseaux sociaux</option>
+              <option>Bouche-à-oreille</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Votre message</label>
+          <textarea id="message" name="message" required placeholder="Type de voyages, nombre de voyageurs, équipements souhaités, budget envisagé…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+        <p class="form-note">Les informations transmises via ce formulaire sont utilisées uniquement par HDSB Expédition pour répondre à votre demande. Vous disposez d'un droit d'accès, de rectification et d'effacement de vos données : voir notre <a href="mentions-legales.html#donnees-personnelles">politique de confidentialité</a>.</p>
+      </form>
+
+      <aside class="contact-aside">
+        <h2>Nous joindre directement</h2>
+        <dl>
+          <dt>Téléphone</dt>
+          <dd><a href="tel:+33769816997">07 69 81 69 97</a></dd>
+          <dt>Email</dt>
+          <dd><a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a></dd>
+          <dt>Atelier</dt>
+          <dd>305 chemin de la Gravière<br>30210 Sernhac (Gard)</dd>
+        </dl>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/img/logo-blanc.webp" alt="HDSB Expédition" width="603" height="230" loading="lazy">
+        <p>Préparation et aménagement de véhicules d'expédition sur base poids lourd.<br>305 chemin de la Gravière, 30210 Sernhac (Gard).</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+33769816997">07 69 81 69 97</a></li>
+          <li><a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a></li>
+          <li><a href="contact.html">Formulaire de contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Le site</h3>
+        <ul>
+          <li><a href="./">Accueil</a></li>
+          <li><a href="./#savoir-faire">Savoir-faire</a></li>
+          <li><a href="actualites.html">Actualités et salons</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> HDSB Expédition</span>
+      <span>Concevoir. Construire. Aller plus loin.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
