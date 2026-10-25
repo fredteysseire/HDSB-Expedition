@@ -778,3 +778,7 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 }
 .social-link .ig-icon { flex: none; color: var(--nogaro-light); }
 .social-link:hover .ig-icon { color: var(--ink); }
+
+/* Formulaire : repère des champs obligatoires */
+.required { color: var(--nogaro-light); font-weight: 700; }
+.form-required-note { font-size: 0.82rem; color: var(--muted); margin: 0 0 18px; }

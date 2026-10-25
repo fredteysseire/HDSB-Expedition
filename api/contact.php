@@ -51,7 +51,12 @@ $echeance = ligne($_POST['echeance'] ?? '', 60);
 $origine = ligne($_POST['origine'] ?? '', 80);
 $message = trim(mb_substr((string) ($_POST['message'] ?? ''), 0, 5000, 'UTF-8'));
 
-if ($nom === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+// Nom, email et téléphone obligatoires (comme dans contact.html) : téléphone français à 10 chiffres
+// ou numéro international (+ ou 00) de 8 à 15 chiffres.
+$chiffres = preg_replace('/\D+/', '', $telephone);
+$telephoneValide = preg_match('/^0\d{9}$/', $chiffres) || (preg_match('/^\s*(\+|00)/', $telephone) && strlen($chiffres) >= 8 && strlen($chiffres) <= 15);
+
+if ($nom === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$telephoneValide) {
     retour('contact.html?envoi=erreur#contact-form');
 }
 
@@ -81,13 +86,10 @@ if (!ctype_digit((string) $verif) || (int) $verif < DELAI_MIN_MS) {
     retour('merci.html');
 }
 
-// Contenu typique du spam (lien dans le message, téléphone impossible, alphabet cyrillique ou
+// Contenu typique du spam (lien dans le message, alphabet cyrillique ou
 // asiatique) : la demande est quand même envoyée, mais l'objet est préfixé « [SPAM ?] ».
-$chiffres = preg_replace('/\D+/', '', $telephone);
-$telephoneValide = preg_match('/^0\d{9}$/', $chiffres) || (preg_match('/^\s*(\+|00)/', $telephone) && strlen($chiffres) >= 8 && strlen($chiffres) <= 15);
 $suspect = preg_match('~https?://|www\.~i', $message . ' ' . $nom . ' ' . $vehicule)
-    || preg_match('/[\p{Cyrillic}\p{Han}\p{Hangul}]/u', $nom . ' ' . $message)
-    || !$telephoneValide;
+    || preg_match('/[\p{Cyrillic}\p{Han}\p{Hangul}]/u', $nom . ' ' . $message);
 
 // Limite le nombre d'envois par adresse IP (anti-spam), stocké hors base de données.
 $limiteFile = $dataDir . '/limite-contact.json';
