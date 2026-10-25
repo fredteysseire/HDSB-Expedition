@@ -782,3 +782,47 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 /* Formulaire : repère des champs obligatoires */
 .required { color: var(--nogaro-light); font-weight: 700; }
 .form-required-note { font-size: 0.82rem; color: var(--muted); margin: 0 0 18px; }
+
+/* ---------- WhatsApp ---------- */
+/* Bouton flottant, en bas à droite de toutes les pages (vert officiel WhatsApp) */
+.wa-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px 14px 16px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s, background-color 0.2s;
+}
+.wa-float:hover { background: #1ebe5b; color: #fff; transform: translateY(-2px); }
+.wa-float svg { flex: none; }
+@media (max-width: 600px) {
+  .wa-float { right: 16px; bottom: 16px; padding: 15px; }
+  .wa-float-label { display: none; }
+  /* Le bouton flottant ne recouvre pas la dernière ligne du pied de page */
+  .site-footer { padding-bottom: 96px; }
+}
+@media print { .wa-float { display: none; } }
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25d366;
+  color: #fff;
+}
+.btn-whatsapp:hover { background: #1ebe5b; color: #fff; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+.wa-inline { display: inline-flex; align-items: center; gap: 10px; }
+.wa-inline svg { color: #25d366; flex: none; }
