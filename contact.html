@@ -67,29 +67,30 @@
     <div class="wrap contact-grid">
 
       <form id="contact-form" action="api/contact.php" method="POST">
-        <p class="form-error" id="form-error" role="alert" hidden>Votre message n'a pas pu être envoyé. Vérifiez votre email puis réessayez, ou contactez-nous directement au <a href="tel:+33769816997">07 69 81 69 97</a> ou à <a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a>.</p>
+        <p class="form-error" id="form-error" role="alert" hidden>Votre message n'a pas pu être envoyé. Vérifiez votre nom, votre email et votre téléphone puis réessayez, ou contactez-nous directement au <a href="tel:+33769816997">07 69 81 69 97</a> ou à <a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a>.</p>
+        <p class="form-required-note"><span class="required" aria-hidden="true">*</span> Champs obligatoires</p>
         <!-- Piège à robots : champ invisible pour un humain -->
         <input type="text" name="site_web" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="field">
-          <label for="nom">Nom et prénom</label>
-          <input type="text" id="nom" name="nom" required autocomplete="name">
+          <label for="nom">Nom et prénom <span class="required" aria-hidden="true">*</span></label>
+          <input type="text" id="nom" name="nom" required minlength="2" autocomplete="name">
         </div>
 
         <div class="row">
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
             <input type="email" id="email" name="email" required autocomplete="email">
           </div>
           <div class="field">
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" required autocomplete="tel">
+            <label for="telephone">Téléphone <span class="required" aria-hidden="true">*</span></label>
+            <input type="tel" id="telephone" name="telephone" required autocomplete="tel" inputmode="tel" pattern="\s*\+?[0-9][0-9 .\(\)\-]{7,19}" title="Numéro de téléphone, par exemple 06 12 34 56 78 ou +33 6 12 34 56 78">
           </div>
         </div>
 
         <div class="row">
           <div class="field">
-            <label for="projet">Votre projet</label>
+            <label for="projet">Votre projet <span class="required" aria-hidden="true">*</span></label>
             <select id="projet" name="projet" required>
               <option value="">Choisir…</option>
               <option>Véhicule d'expédition clés en main</option>
@@ -131,7 +132,7 @@
         </div>
 
         <div class="field">
-          <label for="message">Votre message</label>
+          <label for="message">Votre message <span class="required" aria-hidden="true">*</span></label>
           <textarea id="message" name="message" required placeholder="Type de voyages, nombre de voyageurs, équipements souhaités, budget envisagé…"></textarea>
         </div>
 
