@@ -67,14 +67,20 @@
     <div class="wrap contact-grid">
 
       <form id="contact-form" action="api/contact.php" method="POST">
-        <p class="form-error" id="form-error" role="alert" hidden>Votre message n'a pas pu être envoyé. Vérifiez votre nom, votre email et votre téléphone puis réessayez, ou contactez-nous directement au <a href="tel:+33769816998">+33 7 69 81 69 98</a> ou à <a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a>.</p>
+        <p class="form-error" id="form-error" role="alert" hidden>Votre message n'a pas pu être envoyé. Vérifiez votre nom, votre prénom, votre email et votre téléphone puis réessayez, ou contactez-nous directement au <a href="tel:+33769816998">+33 7 69 81 69 98</a> ou à <a href="mailto:contact@hdsb-xp.com">contact@hdsb-xp.com</a>.</p>
         <p class="form-required-note"><span class="required" aria-hidden="true">*</span> Champs obligatoires</p>
         <!-- Piège à robots : champ invisible pour un humain -->
         <input type="text" name="site_web" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <div class="field">
-          <label for="nom">Nom et prénom <span class="required" aria-hidden="true">*</span></label>
-          <input type="text" id="nom" name="nom" required minlength="2" autocomplete="name">
+        <div class="row">
+          <div class="field">
+            <label for="nom">Nom <span class="required" aria-hidden="true">*</span></label>
+            <input type="text" id="nom" name="nom" required autocomplete="family-name">
+          </div>
+          <div class="field">
+            <label for="prenom">Prénom <span class="required" aria-hidden="true">*</span></label>
+            <input type="text" id="prenom" name="prenom" required autocomplete="given-name">
+          </div>
         </div>
 
         <div class="row">
@@ -117,23 +123,11 @@
               <option>Je me renseigne</option>
             </select>
           </div>
-          <div class="field">
-            <label for="origine">Comment nous avez-vous connus ? <span class="optional">(facultatif)</span></label>
-            <select id="origine" name="origine">
-              <option value="">Non précisé</option>
-              <option>Salon Vanlife Expo Bordeaux</option>
-              <option>Autre salon ou événement</option>
-              <option>Recherche internet</option>
-              <option>Réseaux sociaux</option>
-              <option>Bouche-à-oreille</option>
-              <option>Autre</option>
-            </select>
-          </div>
         </div>
 
         <div class="field">
-          <label for="message">Votre message <span class="required" aria-hidden="true">*</span></label>
-          <textarea id="message" name="message" required placeholder="Type de voyages, nombre de voyageurs, équipements souhaités, budget envisagé…"></textarea>
+          <label for="message">Votre message <span class="optional">(facultatif)</span></label>
+          <textarea id="message" name="message" placeholder="Type de voyages, nombre de voyageurs, équipements souhaités, budget envisagé…"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Envoyer ma demande</button>

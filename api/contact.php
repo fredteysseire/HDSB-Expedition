@@ -42,33 +42,33 @@ if (!empty($_POST['site_web'])) {
     retour('merci.html');
 }
 
-$nom = ligne($_POST['nom'] ?? '', 120);
+$nom = ligne($_POST['nom'] ?? '', 80);
+$prenom = ligne($_POST['prenom'] ?? '', 80);
 $email = ligne($_POST['email'] ?? '', 160);
 $telephone = ligne($_POST['telephone'] ?? '', 40);
 $projet = ligne($_POST['projet'] ?? '', 120);
 $vehicule = ligne($_POST['vehicule'] ?? '', 160);
 $echeance = ligne($_POST['echeance'] ?? '', 60);
-$origine = ligne($_POST['origine'] ?? '', 80);
 $message = trim(mb_substr((string) ($_POST['message'] ?? ''), 0, 5000, 'UTF-8'));
 
-// Nom, email et téléphone obligatoires (comme dans contact.html) : téléphone français à 10 chiffres
+// Nom, prénom, email et téléphone obligatoires, message facultatif (comme dans contact.html) : téléphone français à 10 chiffres
 // ou numéro international (+ ou 00) de 8 à 15 chiffres.
 $chiffres = preg_replace('/\D+/', '', $telephone);
 $telephoneValide = preg_match('/^0\d{9}$/', $chiffres) || (preg_match('/^\s*(\+|00)/', $telephone) && strlen($chiffres) >= 8 && strlen($chiffres) <= 15);
 
-if ($nom === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$telephoneValide) {
+if ($nom === '' || $prenom === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$telephoneValide) {
     retour('contact.html?envoi=erreur#contact-form');
 }
 
 $corps = "Nouvelle demande depuis le site hdsb-xp.com\n\n"
     . "Nom : $nom\n"
+    . "Prénom : $prenom\n"
     . "Email : $email\n"
     . "Téléphone : " . ouNon($telephone) . "\n"
     . "Projet : " . ouNon($projet) . "\n"
     . "Base du véhicule : " . ouNon($vehicule) . "\n"
     . "Échéance : " . ouNon($echeance) . "\n"
-    . "Nous a connus par : " . ouNon($origine) . "\n\n"
-    . "Message :\n$message\n";
+    . "\nMessage :\n" . ($message !== '' ? $message : '(aucun message)') . "\n";
 
 // Robots : le champ « verif » n'est rempli que par le JavaScript de la page, après un délai
 // humainement plausible. Ces envois ne sont pas transmis par email mais conservés dans
@@ -88,8 +88,8 @@ if (!ctype_digit((string) $verif) || (int) $verif < DELAI_MIN_MS) {
 
 // Contenu typique du spam (lien dans le message, alphabet cyrillique ou
 // asiatique) : la demande est quand même envoyée, mais l'objet est préfixé « [SPAM ?] ».
-$suspect = preg_match('~https?://|www\.~i', $message . ' ' . $nom . ' ' . $vehicule)
-    || preg_match('/[\p{Cyrillic}\p{Han}\p{Hangul}]/u', $nom . ' ' . $message);
+$suspect = preg_match('~https?://|www\.~i', $message . ' ' . $nom . ' ' . $prenom . ' ' . $vehicule)
+    || preg_match('/[\p{Cyrillic}\p{Han}\p{Hangul}]/u', $nom . ' ' . $prenom . ' ' . $message);
 
 // Limite le nombre d'envois par adresse IP (anti-spam), stocké hors base de données.
 $limiteFile = $dataDir . '/limite-contact.json';
@@ -124,7 +124,7 @@ if ($fp) {
     }
 }
 
-$sujet = mb_encode_mimeheader(($suspect ? '[SPAM ?] ' : '') . "Nouvelle demande, site HDSB Expédition : $nom", 'UTF-8');
+$sujet = mb_encode_mimeheader(($suspect ? '[SPAM ?] ' : '') . "Nouvelle demande, site HDSB Expédition : $prenom $nom", 'UTF-8');
 $entetes = implode("\r\n", [
     'From: ' . mb_encode_mimeheader('Site HDSB Expédition', 'UTF-8') . ' <' . EXPEDITEUR . '>',
     'Reply-To: ' . $email,
