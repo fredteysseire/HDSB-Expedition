@@ -53,3 +53,12 @@ par son `.htaccess` et contient, si besoin, les demandes dont l'email n'a pas pu
 
 - Logo et fond d'accueil issus de la charte graphique HDSB (`assets/img/`).
 - Police Montserrat (SIL Open Font License, voir `assets/fonts/OFL.txt`), hébergée localement.
+
+## Ajouter une réalisation
+
+1. Créer la page de l'article (copier `realisation-man-tgm-18-320-vehicule-expedition.html`) et
+   déposer ses photos dans `assets/img/` (WebP + JPEG).
+2. Ajouter une entrée dans `realisations.json` (page, titre, résumé, image, alt, étiquettes, date).
+3. Lancer `python3 outils/generer-realisations.py` : la galerie de l'accueil (3 dernières) et la page
+   `realisations.html` (toutes) sont régénérées en HTML statique.
+4. Ajouter la page au `sitemap.xml` et à `llms.txt`.

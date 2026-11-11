@@ -235,7 +235,7 @@
     <a href="./" class="logo"><img src="assets/img/logo-blanc.webp" alt="HDSB Expédition" width="603" height="230"></a>
     <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
       <a href="#savoir-faire">Savoir-faire</a>
-      <a href="#realisations">Réalisations</a>
+      <a href="realisations.html">Réalisations</a>
       <a href="#fondateurs">Qui sommes-nous</a>
       <a href="actualites.html">Actualités</a>
       <a href="contact.html" class="btn btn-primary">Nous contacter</a>
@@ -348,17 +348,38 @@
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Réalisations</span>
-        <h2>À l'atelier</h2>
-        <p class="lede">Structures, faux-châssis, cellules : chaque pièce est conçue et fabriquée dans notre atelier de Sernhac.</p>
+        <h2>Nos réalisations</h2>
+        <p class="lede">Structures, faux-châssis, cellules : chaque pièce est conçue et fabriquée dans notre atelier de Sernhac, près de Nîmes.</p>
       </div>
-      <figure class="feature">
-        <picture>
-          <source srcset="assets/img/realisation-man-tgm-4x4.webp" type="image/webp">
-          <img src="assets/img/realisation-man-tgm-4x4.jpg" alt="Véhicule d'expédition MAN TGM 18.320 4x4 en cours de préparation et d'aménagement dans l'atelier HDSB Expédition" width="1600" height="1067" loading="lazy">
-        </picture>
-        <figcaption>MAN TGM 18.320 4x4 en cours de préparation</figcaption>
-      </figure>
+      <div class="project-cards">
+        <!-- Les 3 dernières réalisations, générées depuis realisations.json par outils/generer-realisations.py -->
+        <!-- REALISATIONS:DEBUT limite=3 -->
+        <article class="project-card">
+          <a href="realisation-man-tgm-18-320-vehicule-expedition.html">
+            <picture>
+              <source srcset="assets/img/man-tgm-18-320-cellule-expedition.webp" type="image/webp">
+              <img src="assets/img/man-tgm-18-320-cellule-expedition.jpg" alt="Véhicule d&#x27;expédition MAN TGM 18.320 4x4 avec cellule habitable, arceau de toit et rampe de phares dans l&#x27;atelier HDSB Expédition" width="1600" height="1200" loading="lazy">
+            </picture>
+            <div class="project-card-body">
+              <span class="project-card-tag">MAN TGM 18.320 · 4x4 · En cours</span>
+              <h3>MAN TGM 18.320 4x4 aménagé en véhicule d&#x27;expédition</h3>
+              <p>Faux-châssis en aluminium, cellule habitable, arceau de toit avec rampe de phares et porte-roue arrière : préparation complète d&#x27;un poids lourd MAN TGM 18.320 4x4.</p>
+              <span class="project-card-more">Lire l'article →</span>
+            </div>
+          </a>
+        </article>        <!-- REALISATIONS:FIN -->
+      </div>
+      <p class="project-cards-more"><a href="realisations.html" class="btn btn-ghost">Toutes nos réalisations</a></p>
+
+      <h3 class="subsection-title">À l'atelier</h3>
       <div class="gallery">
+        <figure>
+          <picture>
+            <source srcset="assets/img/atelier-hdsb-expedition-sernhac.webp" type="image/webp">
+            <img src="assets/img/atelier-hdsb-expedition-sernhac.jpg" alt="Vue d'ensemble de l'atelier HDSB Expédition à Sernhac : postes de soudure, stock d'acier et d'aluminium, chariot élévateur et structures en fabrication" width="1200" height="1600" loading="lazy">
+          </picture>
+          <figcaption>Notre atelier de Sernhac (Gard)</figcaption>
+        </figure>
         <figure>
           <picture>
             <source srcset="assets/img/atelier-fabrication-structure.webp" type="image/webp">
@@ -574,6 +595,7 @@
         <ul>
           <li><a href="./">Accueil</a></li>
           <li><a href="./#savoir-faire">Savoir-faire</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
           <li><a href="actualites.html">Actualités et salons</a></li>
           <li><a href="mentions-legales.html">Mentions légales</a></li>
         </ul>
