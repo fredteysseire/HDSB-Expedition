@@ -21,7 +21,7 @@ RewriteRule ^index\.html$ https://hdsb-xp.com/ [R=301,L]
 
 # Fichiers du dépôt Git publiés par l'intégration Git d'OVH mais à ne pas servir :
 # README (notes internes de configuration) et dossiers techniques.
-RedirectMatch 404 ^/(README\.md|\.git(/.*)?|\.gitignore|redirection-fr(/.*)?)$
+RedirectMatch 404 ^/(README\.md|\.git(/.*)?|\.gitignore|redirection-fr(/.*)?|outils(/.*)?)$
 
 # En-têtes de sécurité
 <IfModule mod_headers.c>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://hdsb-xp.com/</loc><lastmod>2026-10-20</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://hdsb-xp.com/</loc><lastmod>2026-11-11</lastmod>
+    <image:image><image:loc>https://hdsb-xp.com/assets/img/man-tgm-18-320-cellule-expedition.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hdsb-xp.com/assets/img/atelier-hdsb-expedition-sernhac.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hdsb-xp.com/realisation-man-tgm-18-320-vehicule-expedition.html</loc><lastmod>2026-11-11</lastmod>
+    <image:image><image:loc>https://hdsb-xp.com/assets/img/man-tgm-18-320-cellule-expedition.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hdsb-xp.com/assets/img/man-tgm-18-320-faux-chassis-aluminium.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hdsb-xp.com/assets/img/man-tgm-18-320-porte-roue-arriere.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hdsb-xp.com/assets/img/realisation-man-tgm-4x4.jpg</image:loc></image:image>
+  </url>
+  <url><loc>https://hdsb-xp.com/realisations.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://hdsb-xp.com/contact.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://hdsb-xp.com/actualites.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://hdsb-xp.com/mentions-legales.html</loc><lastmod>2026-10-15</lastmod></url>

@@ -47,6 +47,10 @@ Toutes les fabrications sont réalisées dans l'atelier de Sernhac. Chaque proje
 3. Fabrication : en atelier, avec un suivi régulier
 4. Livraison : prise en main, conformité réglementaire, suivi après le départ
 
+## Réalisations
+
+- MAN TGM 18.320 4x4 en cours de préparation et d'aménagement en véhicule d'expédition : structures en aluminium fabriquées et marquées HDSB, cellule habitable, arceau de toit avec rampe de quatre phares et échelle, porte-roue de secours arrière, coffres de toit en aluminium larmé, panneaux arrière perforés, pare-chocs arrière tubulaire.
+
 ## Salons
 
 - Vanlife Expo Bordeaux, 14 et 15 novembre 2026, Parc des Expositions de Bordeaux
@@ -54,6 +58,8 @@ Toutes les fabrications sont réalisées dans l'atelier de Sernhac. Chaque proje
 ## Pages
 
 - Accueil (savoir-faire, réalisations, plateformes, fondateurs, questions fréquentes) : https://hdsb-xp.com/
+- Réalisations (liste des projets) : https://hdsb-xp.com/realisations.html
+- Réalisation en cours, MAN TGM 18.320 4x4 aménagé en véhicule d'expédition (faux-châssis aluminium, cellule habitable, arceau et rampe de phares, porte-roue arrière) : https://hdsb-xp.com/realisation-man-tgm-18-320-vehicule-expedition.html
 - Salons et actualités : https://hdsb-xp.com/actualites.html
 - Contact et demande de devis : https://hdsb-xp.com/contact.html
 - Mentions légales : https://hdsb-xp.com/mentions-legales.html
